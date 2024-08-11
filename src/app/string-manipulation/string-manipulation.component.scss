@@ -1,0 +1,32 @@
+.container {
+  box-shadow: 0 6px 12px rgb(30 10 58 / 28%);
+}
+
+.ml-1 {
+  margin-left: -2.5px !important;
+}
+.mt-5 {
+  margin-top: 6rem !important;
+}
+.fs-6 {
+  font-size: 25px;
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.mt-4 {
+  margin-top: 8.5rem !important;
+}
+
+.modal-content {
+  max-height: 53vh;
+  min-width: 67vw;
+  overflow-y: auto;
+}
+.modal-header {
+  padding: 0rem 1rem !important;
+}

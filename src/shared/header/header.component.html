@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="sidenav">
+      <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item href="https://www.youtube.com/@targetdevelopers2585/videos">YouTube</a>
+        <a mat-list-item href="#">Live Demo</a>
+        <a mat-list-item href="https://buymeacoffee.com/learning2pl">Buy</a>
+        <a mat-list-item href="https://buymeacoffee.com/learning2pl">Developer</a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar class="sticky ">
+        <button mat-icon-button (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Article Transformer</span>
+      </mat-toolbar>
+      <div class="content">
+          <string-manipulation></string-manipulation>
+         <!-- <app-dev-info></app-dev-info> -->
+      </div>
+       
+    </mat-sidenav-content>
+  </mat-sidenav-container>
