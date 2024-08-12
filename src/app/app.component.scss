@@ -1,0 +1,49 @@
+a {
+    color: rgb(52 54 58);
+    text-decoration: underline;
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .right-items {
+    display: flex;
+    gap: 10px; /* Adjust spacing between items as needed */
+  }
+
+.mat-drawer-container {
+    display: inline;
+  }
+  
+  .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .main-content {
+      padding: 20px;
+    }
+  
+    .mat-toolbar {
+      background: #fff35a;
+  }
+
+  .side-menu{
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .right-items{
+    display: none;
+  }
+  .side-menu {
+    display: block;
+  }
+   }
+
+ 
+  
+  
+    
