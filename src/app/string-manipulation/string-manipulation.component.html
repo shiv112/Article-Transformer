@@ -1,10 +1,9 @@
 <!-- enter article section -->
 <div class="container mt-5">
   <div class="flex items-center justify-center h-full">
-    <textarea rows="5" class="w-100 mt-3 fs-3 pt-4 ml-1 ps-4" placeholder="Enter Your Article Here..."
+    <textarea rows="10" class="w-100 mt-3 fs-3 pt-4 ml-1 ps-4" placeholder="Enter Your Article Here..."
      [(ngModel)]="inputString"
      [ngClass]="{'border-danger': !isUserEnterText}"
-    
      ></textarea>
      <!-- [ngStyle]="{'border': isUserEnterText ? '' : '2px solid red'}" -->
   <div class="d-flex justify-content-center">  
@@ -24,29 +23,28 @@
 </div>
 
 <!-- your transformed article popup -->
-<div class="modal"
-   [ngStyle]="{ display: showModal ? 'block' : 'none' }">
+<div class="modal" [ngStyle]="{ display: isPopupTransformed ? 'block' : 'none' }">
   <div class="modal-dialog justify-content-center">
     <div class="modal-content modal-dialog-centered text-center mt-4">
-      <div class="modal-header">
-        <div class="modal-header">
-          <h1 class="modal-title w-100 mt-2">Your Transformed Article</h1>
-        </div>
+      <div class="modal-header w-100">
+        <h1 class="modal-title w-100 mt-2">Your Transformed Article</h1>
+        <!-- Close button in the top right corner -->
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
         <h1>{{ textTransformed }}</h1><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Close
-        </button>
       </div>
     </div>
   </div>
 </div>
 
+
+
+
 <!-- Replace popup  -->
-<div class="modal"  [ngStyle]="{ display: isPopup ? 'block' : 'none' }">
+<div class="modal"  [ngStyle]="{ display: isPopupReplace ? 'block' : 'none' }">
   <div class="modal-dialog justify-content-center">
     <div class="modal-content modal-dialog-centered text-center mt-4">
       <div class="modal-header">
