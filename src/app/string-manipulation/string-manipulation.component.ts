@@ -43,14 +43,14 @@ export class StringManipulationComponent {
   buttons = [
     { label: 'Uppercase Article' },
     { label: 'Lowercase Article' },
-    { label: 'Capitalize Initial Character' },
+    { label: 'Capitalize First Letter of Each Word' },
     { label: 'Reverse Article' },
     { label: 'Remove Special Characters' },
     { label: 'Remove Numericals' },
     { label: 'Remove Spaces' },
     { label: 'Count Characters' },
     { label: 'Count Vowels And Consonants' },
-    { label: 'Replace Words With New Word' },
+    { label: 'Replace Word With New Word' },
     { label: 'Trim the whitespace from both ends' },
     { label: 'substring()' },
     { label: 'slice()' },
@@ -58,10 +58,7 @@ export class StringManipulationComponent {
     { label: 'lastIndexOf()' },
     { label: 'split()' },
     { label: 'join()' },
-    { label: 'includes()' },
-    { label: 'startsWith()' },
-    { label: 'endsWith()' },
-    { label: 'repeat()' },
+    { label: 'includes()' }
   ];
 
   showModal = false;
@@ -77,7 +74,7 @@ export class StringManipulationComponent {
   enterWord: any;
   textTransformed: any;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.replaceform = this.fb.group({
@@ -91,60 +88,68 @@ export class StringManipulationComponent {
   }
 
   reverse() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.split('').reverse().join('');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
+
   }
 
   capitalizeWords() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString
       .split(' ')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   toUpperCase() {
     this.isUserEnterText = !!this.inputString;
     this.transformedText = this.isUserEnterText ? this.inputString.toUpperCase() : '';
-    if (this.isUserEnterText) this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   toLowerCase() {
     this.isUserEnterText = !!this.inputString;
     this.transformedText = this.isUserEnterText ? this.inputString.toLowerCase() : '';
-    if (this.isUserEnterText) this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeSpecialCharacters() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString
       .split('')
       .filter(char => /[a-zA-Z0-9 ]/.test(char))
       .join('');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeNumerals() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString
       .split('')
       .filter(char => char < '0' || char > '9')
       .join('');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeSpaces() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString
       .split('')
       .filter(char => char !== ' ')
       .join('');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   countCharacters() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.length;
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   countVowelsAndConsonants() {
+    this.isUserEnterText = !!this.inputString;
     const vowels = 'aeiouAEIOU';
     let vowelsCount = 0;
     let consonantsCount = 0;
@@ -158,72 +163,84 @@ export class StringManipulationComponent {
     }
 
     this.transformedText = { vowels: vowelsCount, consonants: consonantsCount };
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
-  replace2() {
-    this.isPopup = false;
+  replace() {
+    this.isUserEnterText = !!this.inputString;
+    // this.isPopup = true;
     this.transformedText = this.inputString
       .split(this.existingWord)
       .join(this.newWord);
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
+
   }
 
-  include2() {
+  includes() {
+    this.isUserEnterText = !!this.inputString;
     this.isPopupInclude = false;
     this.transformedText = this.inputString.includes(this.enterWord);
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   trim() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.trim();
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   join() {
+    this.isUserEnterText = !!this.inputString;
     const itemsArray = this.inputString
       .split(',')
       .map(item => item.trim());
     this.transformedText = itemsArray.join('; ');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   split() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.split(',');
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   lastIndexOf() {
+    this.isUserEnterText = !!this.inputString;
     const charIndex = this.inputString.lastIndexOf('.');
     this.transformedText = charIndex === -1 ? this.inputString : charIndex;
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   indexOf() {
+    this.isUserEnterText = !!this.inputString;
     const charIndex = this.inputString.indexOf('.');
     this.transformedText = charIndex === -1 ? this.inputString : charIndex;
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   slice() {
+    this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.slice(3, 5);
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   substring() {
+    this.isUserEnterText = !!this.inputString;
     const spaceIndex = this.inputString.indexOf(' ');
     this.transformedText = spaceIndex === -1
       ? this.inputString
       : this.inputString.substring(0, spaceIndex);
-    this.openModal(this.transformedText);
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
-  replace() {
-    this.isPopup = true;
+  replaceToggle() {
+    this.isUserEnterText = !!this.inputString;
+    this.isUserEnterText ?  this.isPopup = true : '';
   }
 
-  includes() {
-    this.isPopupInclude = true;
+  includesToggle() {
+    this.isUserEnterText = !!this.inputString;
+    this.isUserEnterText ? this.isPopupInclude = true : '';
   }
 
   handleClick(buttonLabel: string): void {
@@ -234,7 +251,7 @@ export class StringManipulationComponent {
       case 'Lowercase Article':
         this.toLowerCase();
         break;
-      case 'Capitalize Initial Character':
+      case 'Capitalize First Letter of Each Word  ':
         this.capitalizeWords();
         break;
       case 'Reverse Article':
@@ -255,8 +272,8 @@ export class StringManipulationComponent {
       case 'Count Vowels And Consonants':
         this.countVowelsAndConsonants();
         break;
-      case 'Replace Words With New Word':
-        this.replace();
+      case 'Replace Word With New Word':
+        this.replaceToggle();
         break;
       case 'Trim the whitespace from both ends':
         this.trim();
@@ -280,7 +297,7 @@ export class StringManipulationComponent {
         this.join();
         break;
       case 'includes()':
-        this.includes();
+        this.includesToggle();
         break;
       default:
         console.log(`No action defined for ${buttonLabel}`);
@@ -305,11 +322,11 @@ export class StringManipulationComponent {
   submit() {
     this.existingWord = this.replaceform.value.existingWord;
     this.newWord = this.replaceform.value.newWord;
-    this.replace2();
+    this.replace();
   }
 
   find() {
     this.enterWord = this.findForm.value.enterWord;
-    this.include2();
+    this.includes();
   }
 }
