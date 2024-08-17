@@ -1,3 +1,32 @@
+.editable-div {
+  width: 300px;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  overflow-y: auto;
+}
+.highlight {
+  background-color: yellow;
+}
+
+span {
+  background: yellow !important;
+}
+
+.highlight {
+  background-color: yellow !important;
+}
+
+.clr {
+  background-color: yellow;
+  color: black; /* Adjust the text color to ensure readability */
+}
+
+.custom-yellow-btn:hover {
+  background-color: darkyellow; /* Optional: Customize hover color */
+}
+
 
 textarea:focus-visible {
   outline: none;
