@@ -1,17 +1,10 @@
+.btn {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
 .custom-hover:hover {
   background-color: green;
   border-color: green;
-}
-.editable-div {
-  width: 300px;
-  height: 150px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #f0f0f0;
-  overflow-y: auto;
-}
-.highlight {
-  background-color: yellow;
 }
 
 span {
@@ -22,29 +15,15 @@ span {
   background-color: yellow !important;
 }
 
-.clr {
-  background-color: yellow;
-  color: black; /* Adjust the text color to ensure readability */
-}
-
-.custom-yellow-btn:hover {
-  background-color: darkyellow; /* Optional: Customize hover color */
-}
-
-
 textarea:focus-visible {
   outline: none;
 }
 
-.border-danger{
-  border: 2px solid #dc3545; /* Custom red color */
+.border-danger {
+  border: 2px solid #dc3545;
 }
 .container {
   box-shadow: 0 6px 12px rgb(30 10 58 / 28%);
-}  
-.btn{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500; /* Example of bold text */
 }
 
 .ml-1 {
