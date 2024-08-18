@@ -3,15 +3,11 @@
   <div class="flex items-center justify-center h-full">
     <textarea rows="10" class="w-100 mt-3 fs-3 pt-4 ml-1 ps-4" placeholder="Enter Your Article Here..."
      [(ngModel)]="inputString"
-     (click)="txtArea(inputString)"
      [ngClass]="{'border-danger': !isUserEnterText}"
      ></textarea>
   <div class="d-flex justify-content-center">  
     <button mat-flat-button color="warn" (click)="textClear()" class="mt-2">
     Clear
-  </button>
-  <button mat-flat-button color="accent" (click)="reset()" class="mt-2 ms-4">
-   Reset
   </button>
 </div>
 <!-- button section -->
@@ -36,7 +32,7 @@
       </div>
       <div class="modal-body">
         <!-- <h1>{{ textTransformed }}</h1><br> -->
-         <h1 [innerHTML]="textTransformed"></h1>
+         <h1 [innerHTML]="textTransformed | json"></h1>
       </div>
       <div class="modal-footer">
       </div>
@@ -44,14 +40,14 @@
   </div>
 </div>
 
-<!-- Replace popup  -->
+<!-- replace popup  -->
 <div class="modal"  [ngStyle]="{ display: isPopupReplace ? 'block' : 'none' }">
   <div class="modal-dialog justify-content-center">
     <div class="modal-content modal-dialog-centered text-center mt-4">
-      <div class="modal-header">
-        <div class="modal-header">
-          <h1 class="modal-title w-100 mt-2">Replace</h1>
-        </div>
+      <div class="modal-header w-100">
+        <h1 class="modal-title w-100 mt-2">Replace</h1>
+           <!-- Close button in the top right corner -->
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
      <form [formGroup]="replaceform">
@@ -73,22 +69,19 @@
      </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Close
-        </button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- find word popup -->
+<!-- includes popup -->
 <div class="modal"  [ngStyle]="{ display: isPopupInclude ? 'block' : 'none' }">
   <div class="modal-dialog justify-content-center">
     <div class="modal-content modal-dialog-centered text-center mt-4">
-      <div class="modal-header">
-        <div class="modal-header">
-          <h1 class="modal-title w-100 mt-2">Find Word</h1>
-        </div>
+      <div class="modal-header w-100">
+        <h1 class="modal-title w-100 mt-2">Find Word</h1>
+         <!-- Close button in the top right corner -->
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
      <form [formGroup]="findForm">
@@ -101,15 +94,11 @@
         <div class="form-group col-md-3"></div>
         <div class="form-group col-md-6"> <button type="button" class="btn btn-secondary" (click)="find()">
           Find
-        </button></div>
-       
+        </button></div> 
       </div>
      </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">
-          Close
-        </button>
       </div>
     </div>
   </div>

@@ -65,6 +65,7 @@ export class StringManipulationComponent {
   isPopupTransformed = false;
   isPopupReplace = false;
   isPopupInclude = false;
+  isPopupIndex = false;
   isUserEnterText = true;
   replaceform!: FormGroup;
   findForm!: FormGroup;
@@ -75,30 +76,26 @@ export class StringManipulationComponent {
   enterWord: any;
   textTransformed: any;
   charToHighlight: string = '';
-  originalArticle: string = '';
-  form!: FormGroup;
-
+ 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+
     this.replaceform = this.fb.group({
       existingWord: ['', Validators.required],
-      newWord: ['', Validators.required],
+      newWord: ['', Validators.required] 
     });
 
     this.findForm = this.fb.group({
       enterWord: ['', Validators.required],
     });
 
-    this.form = this.fb.group({
-      content: [''], // Initial value for the contenteditable div
-    });
   }
 
   reverse() {
     this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.split('').reverse().join('');
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   capitalizeWords() {
@@ -107,7 +104,7 @@ export class StringManipulationComponent {
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   toUpperCase() {
@@ -115,7 +112,7 @@ export class StringManipulationComponent {
     this.transformedText = this.isUserEnterText
       ? this.inputString.toUpperCase()
       : '';
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   toLowerCase() {
@@ -123,7 +120,7 @@ export class StringManipulationComponent {
     this.transformedText = this.isUserEnterText
       ? this.inputString.toLowerCase()
       : '';
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeSpecialCharacters() {
@@ -132,7 +129,7 @@ export class StringManipulationComponent {
       .split('')
       .filter((char) => /[a-zA-Z0-9 ]/.test(char))
       .join('');
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeNumerals() {
@@ -141,7 +138,7 @@ export class StringManipulationComponent {
       .split('')
       .filter((char) => char < '0' || char > '9')
       .join('');
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   removeSpaces() {
@@ -150,7 +147,7 @@ export class StringManipulationComponent {
       .split('')
       .filter((char) => char !== ' ')
       .join('');
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+      this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   countCharacters() {
@@ -196,23 +193,27 @@ export class StringManipulationComponent {
   trim() {
     this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.trim();
-    this.isUserEnterText ? (this.inputString = this.transformedText) : '';
+    this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   join() {
+
     this.isUserEnterText = !!this.inputString;
-    const itemsArray = this.inputString.split(',').map((item) => item.trim());
+    const itemsArray = this.inputString.split(',');
     this.transformedText = itemsArray.join('; ');
     this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   split() {
+    // input- html,css,bootstrap     output- ['html','css','bootstrap']
     this.isUserEnterText = !!this.inputString;
     this.transformedText = this.inputString.split(',');
+    console.log(this.transformedText);
     this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   indexOf() {
+    // input- target.developers.angular
     this.isUserEnterText = !!this.inputString;
     const charIndex = this.inputString.indexOf('.');
     this.transformedText =
@@ -220,11 +221,14 @@ export class StringManipulationComponent {
       "<span class='highlight'>" +
       this.inputString.charAt(charIndex) +
       '</span>' +
-      this.inputString.slice(charIndex + 1);
+      this.inputString.slice(charIndex + 1)+
+      "</br>"+
+      "<h1>"+ "Index Value - "+ "&nbsp &nbsp" +charIndex+"</h1>"
     this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   lastIndexOf() {
+    // input- target.developers.angular
     this.isUserEnterText = !!this.inputString;
     const charIndex = this.inputString.lastIndexOf('.');
     this.transformedText =
@@ -232,11 +236,14 @@ export class StringManipulationComponent {
       "<span class='highlight'>" +
       this.inputString.charAt(charIndex) +
       '</span>' +
-      this.inputString.slice(charIndex + 1);
+      this.inputString.slice(charIndex + 1)+
+      "</br>"+
+      "<h1>"+ "Last Index Value - "+ "&nbsp &nbsp" +charIndex+"</h1>"
     this.isUserEnterText ? this.openModal(this.transformedText) : '';
   }
 
   slice() {
+    // input- target.developers.angular
     this.isUserEnterText = !!this.inputString;
     this.transformedText =
       "<span class='highlight'>" + this.inputString.slice(3, 5) + '</span>';
@@ -244,6 +251,7 @@ export class StringManipulationComponent {
   }
 
   substring() {
+      // input- shivam sahu
     this.isUserEnterText = !!this.inputString;
     const spaceIndex = this.inputString.indexOf(' ');
     this.transformedText =
@@ -254,6 +262,34 @@ export class StringManipulationComponent {
       ? this.openModal("<span class='highlight'>" + this.transformedText) +
         '</span>'
       : '';
+  }
+
+
+
+  openModal(textTransformed: any) {
+    this.textTransformed = textTransformed;
+    this.isPopupTransformed = true;
+  }
+
+  closeModal() {
+    this.isPopupTransformed = false;
+    this.isPopupReplace = false;
+    this.isPopupInclude = false;
+  }
+
+  textClear() {
+    this.inputString = '';
+  }
+
+  submit() {
+    this.existingWord = this.replaceform.value.existingWord;
+    this.newWord = this.replaceform.value.newWord;
+    this.replace();
+  }
+
+  find() {
+    this.enterWord = this.findForm.value.enterWord;
+    this.includes();
   }
 
   replaceToggle() {
@@ -326,45 +362,5 @@ export class StringManipulationComponent {
         console.log(`No action defined for ${buttonLabel}`);
         break;
     }
-  }
-
-  openModal(textTransformed: any) {
-    this.textTransformed = textTransformed;
-    this.isPopupTransformed = true;
-  }
-
-  closeModal() {
-    this.isPopupTransformed = false;
-    this.isPopupReplace = false;
-    this.isPopupInclude = false;
-  }
-
-  textClear() {
-    this.inputString = '';
-  }
-
-  reset() {
-    this.inputString = this.originalArticle;
-  }
-
-  txtArea(txt: any) {
-    this.originalArticle = txt;
-    console.log(txt);
-  }
-
-  submit() {
-    this.existingWord = this.replaceform.value.existingWord;
-    this.newWord = this.replaceform.value.newWord;
-    this.replace();
-  }
-
-  find() {
-    this.enterWord = this.findForm.value.enterWord;
-    this.includes();
-  }
-
-  onInput(event: Event): void {
-    const target = event.target as HTMLElement;
-    this.inputString = target.innerText || ''; // Update the bound variable
   }
 }
