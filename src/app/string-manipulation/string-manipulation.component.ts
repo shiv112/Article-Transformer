@@ -158,20 +158,14 @@ export class StringManipulationComponent {
 
   countVowelsAndConsonants() {
     this.isUserEnterText = !!this.inputString;
-    const vowels = 'aeiouAEIOU';
-    let vowelsCount = 0;
-    let consonantsCount = 0;
-
+    let vowelsCount = 0, consonantsCount = 0;
     for (const char of this.inputString) {
-      if (vowels.includes(char)) {
-        vowelsCount++;
-      } else if (char.toLowerCase() >= 'a' && char.toLowerCase() <= 'z') {
-        consonantsCount++;
-      }
+      if ('aeiouAEIOU'.includes(char)) vowelsCount++;
+      else if (/[a-z]/i.test(char)) consonantsCount++;
     }
-
-    this.transformedText = { vowels: vowelsCount, consonants: consonantsCount };
-    this.isUserEnterText ? this.openModal(this.transformedText) : '';
+     this.transformedText = "<h1>"+ "vowel count - "+ "&nbsp" +vowelsCount+"</h1>"+
+                            "<h1>"+ "consonant count - "+ "&nbsp" +consonantsCount+"</h1>"
+    this.isUserEnterText && this.openModal(this.transformedText);
   }
 
   replace() {

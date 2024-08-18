@@ -14,7 +14,7 @@
   </div>
   <div class="row mt-3">
     <div class="col-12 col-md-6 col-lg-4" *ngFor="let button of buttons">
-      <button mat-flat-button color="primary"class="w-100 mb-2 btn fs-6" (click)="handleClick(button.label)">
+      <button mat-flat-button color="primary"class="w-100 mb-2 btn fs-6 custom-hover" (click)="handleClick(button.label)">
         {{ button.label }}
       </button>
     </div>
@@ -32,7 +32,7 @@
       </div>
       <div class="modal-body">
         <!-- <h1>{{ textTransformed }}</h1><br> -->
-         <h1 [innerHTML]="textTransformed | json"></h1>
+         <h1 [innerHTML]="textTransformed"></h1>
       </div>
       <div class="modal-footer">
       </div>
